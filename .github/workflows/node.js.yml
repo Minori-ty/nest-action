@@ -12,19 +12,19 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [14.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: 使用nodejs ${{ matrix.node-version }} 打包
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
       - run: npm run build --if-present
-      - name: Deploy to Vercel
+      - name: 发布到vercel
         run: npx vercel --token ${VERCEL_TOKEN} --prod
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
