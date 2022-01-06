@@ -20,7 +20,7 @@ jobs:
       - name: 使用nodejs ${{ matrix.node-version }} 打包
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 14.x
           cache: 'npm'
       - run: npm ci
       - run: npm run build --if-present
